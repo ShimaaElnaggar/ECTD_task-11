@@ -11,6 +11,7 @@ class CustomDateRow extends StatefulWidget {
 
 class _CustomDateRowState extends State<CustomDateRow> {
   DateTime ? selectedDate;
+  TextEditingController dateController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +47,29 @@ class _CustomDateRowState extends State<CustomDateRow> {
               color: selectedDate == null ? Colors.grey : Colors.deepOrange,
             ),
         ),
+        // validation of date Picker
+        // Container(
+        //   width: 150,
+        //   child: TextFormField(
+        //     controller: dateController,
+        //     readOnly: true,
+        //     onTap: () => picDate(context),
+        //     decoration: InputDecoration(
+        //       labelText:  selectedDate == null ?
+        //       " Select Date" :
+        //       "${selectedDate!.year} - ${selectedDate!.month} - ${selectedDate!.day}",
+        //     ),
+        //     autovalidateMode: AutovalidateMode.always,
+        //     validator: (value) {
+        //       if (selectedDate == null) {
+        //         return 'Please select a date';
+        //       } else if (selectedDate!.isBefore(DateTime.now())) {
+        //         return 'Selected date cannot be in the past';
+        //       }
+        //       return null; // Validation passed
+        //     },
+        //   ),
+        // ),
 
       ],
     );
@@ -55,13 +79,21 @@ class _CustomDateRowState extends State<CustomDateRow> {
      var result = await showDatePicker(
         context: context,
         initialDate: selectedDate ?? DateTime.now(),
-        firstDate: DateTime(2022),
-        lastDate: DateTime(2025),);
+        firstDate: DateTime(2024),
+        lastDate: DateTime(2026),);
        if(result != null){
-         selectedDate = result;
-     }
-     setState(() {
+         if(result.isBefore(DateTime.now())){
+           ScaffoldMessenger.of(context).showSnackBar(
+             SnackBar(content: Text('Selected date cannot be in the past',)),
+           );
+         }else{
+           selectedDate = result;
+           setState(() {
 
-     });
+           });
+         }
+
+     }
+
   }
 }
