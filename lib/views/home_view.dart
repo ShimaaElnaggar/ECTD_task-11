@@ -9,6 +9,11 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar:CustomAppBar(title: "ATC Hotel"),
+      body: Column(
+        children: [
+          Image.asset("assets/images/hotel.jpg",),
+        ],
+      ),
     );
   }
 }
