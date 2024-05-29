@@ -84,7 +84,7 @@ class _CustomDateRowState extends State<CustomDateRow> {
        if(result != null){
          if(result.isBefore(DateTime.now())){
            ScaffoldMessenger.of(context).showSnackBar(
-             SnackBar(content: Text('Selected date cannot be in the past',)),
+             const SnackBar(content: Text('Selected date cannot be in the past',)),
            );
          }else{
            selectedDate = result;
