@@ -1,5 +1,6 @@
 
 import 'package:ectd_task/widgets/custom_app_bar.dart';
+import 'package:ectd_task/widgets/custom_elevated_button.dart';
 import 'package:ectd_task/widgets/custom_date_row.dart';
 import 'package:ectd_task/widgets/custom_group_button.dart';
 import 'package:ectd_task/widgets/custom_slider_row.dart';
@@ -20,15 +21,30 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar:CustomAppBar(title: "ATC Hotel"),
-      body: ListView(
-        children: [
-          Image.asset("assets/images/hotel.jpg",),
-          CustomDateRow(title: "Check-in date : "),
-          CustomDateRow(title: "Check-Out date : "),
-          CustomSliderRow(title: "Adults : "),
-          CustomSliderRow(title: "Children : "),
-          CustomGrouPButtons(),
-        ],
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            Expanded(
+              child: ListView(
+                children: [
+                  Row(
+                    children: [
+                      Expanded(child: Image.asset("assets/images/hotel.jpg",fit: BoxFit.fill,height: 150,)),
+                    ],
+                  ),
+                  CustomDateRow(title: "Check-in date : "),
+                  CustomDateRow(title: "Check-Out date : "),
+                  CustomSliderRow(title: "Adults : "),
+                  CustomSliderRow(title: "Children : "),
+                  const CustomGrouPButtons(),
+
+                ],
+              ),
+            ),
+            CustomElevatedButton(onPressed:(){}, title: "Submit"),
+          ],
+        ),
       ),
     );
   }
