@@ -3,9 +3,14 @@ import 'package:ectd_task/widgets/custom_app_bar.dart';
 import 'package:ectd_task/widgets/custom_date_row.dart';
 import 'package:flutter/material.dart';
 
-class HomeView extends StatelessWidget {
+class HomeView extends StatefulWidget {
   const HomeView({super.key});
 
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,8 +18,8 @@ class HomeView extends StatelessWidget {
       body: Column(
         children: [
           Image.asset("assets/images/hotel.jpg",),
-          CustomDateRow(title: "Check-in date :"),
-          CustomDateRow(title: "Check-Out date :"),
+          CustomDateRow(title: "Check-in date : "),
+          CustomDateRow(title: "Check-Out date : "),
 
         ],
       ),

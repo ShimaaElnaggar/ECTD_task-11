@@ -1,10 +1,17 @@
 
 import 'package:flutter/material.dart';
 
-class CustomDateRow extends StatelessWidget {
+class CustomDateRow extends StatefulWidget {
   String title;
   CustomDateRow({required this.title,super.key});
+
+  @override
+  State<CustomDateRow> createState() => _CustomDateRowState();
+}
+
+class _CustomDateRowState extends State<CustomDateRow> {
   DateTime ? selectedDate;
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -13,16 +20,17 @@ class CustomDateRow extends StatelessWidget {
             text: TextSpan(
               children: [
                 TextSpan(
-                  text: title,
+                  text: widget.title,
                 style: const TextStyle(
                   color: Colors.deepOrange,
                   fontSize: 18,
                 ),
                 ),
-                const TextSpan(
-                  text: " Selected Date",
-                  style: TextStyle(
-                    color: Colors.blue,
+                 TextSpan(
+                  text:  selectedDate == null ?
+                  " Select Date" : "${selectedDate!.year} - ${selectedDate!.month} - ${selectedDate!.day}" ,
+                  style:  TextStyle(
+                    color: selectedDate == null ? Colors.grey : Colors.blue,
                     fontSize: 18,
                   ),
                 ),
@@ -33,19 +41,27 @@ class CustomDateRow extends StatelessWidget {
             onPressed: (){
               picDate(context);
             },
-            icon: const Icon(Icons.date_range_outlined),
+            icon:  Icon(
+              Icons.date_range_outlined ,
+              color: selectedDate == null ? Colors.grey : Colors.deepOrange,
+            ),
         ),
-       
+
       ],
     );
   }
 
-  void picDate(BuildContext context) {
-      showDatePicker(
+  void picDate(BuildContext context) async{
+     var result = await showDatePicker(
         context: context,
-        initialDate: DateTime.now(),
+        initialDate: selectedDate ?? DateTime.now(),
         firstDate: DateTime(2022),
-        lastDate: DateTime(2025),
-    );
+        lastDate: DateTime(2025),);
+       if(result != null){
+         selectedDate = result;
+     }
+     setState(() {
+
+     });
   }
 }
