@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class CustomDateRow extends StatelessWidget {
   String title;
   CustomDateRow({required this.title,super.key});
-
+  DateTime ? selectedDate;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -30,10 +30,22 @@ class CustomDateRow extends StatelessWidget {
             ),
         ),
         IconButton(
-            onPressed: (){},
+            onPressed: (){
+              picDate(context);
+            },
             icon: const Icon(Icons.date_range_outlined),
-        )
+        ),
+       
       ],
+    );
+  }
+
+  void picDate(BuildContext context) {
+      showDatePicker(
+        context: context,
+        initialDate: DateTime.now(),
+        firstDate: DateTime(2022),
+        lastDate: DateTime(2025),
     );
   }
 }
