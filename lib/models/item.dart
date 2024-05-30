@@ -1,6 +1,8 @@
+import 'package:flutter/material.dart';
+
 class Item {
   bool isExpanded ;
-   String header;
+   Widget header;
    String body;
    String selection;
 
