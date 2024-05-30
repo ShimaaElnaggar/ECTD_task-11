@@ -1,4 +1,5 @@
 
+import 'package:ectd_task/views/rooms_view.dart';
 import 'package:ectd_task/widgets/custom_app_bar.dart';
 import 'package:ectd_task/widgets/custom_elevated_button.dart';
 import 'package:ectd_task/widgets/custom_date_row.dart';
@@ -22,7 +23,7 @@ class _HomeViewState extends State<HomeView> {
     return Scaffold(
       appBar:CustomAppBar(title: "ATC Hotel"),
       body: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(10.0),
         child: Column(
           children: [
             Expanded(
@@ -42,7 +43,9 @@ class _HomeViewState extends State<HomeView> {
                 ],
               ),
             ),
-            CustomElevatedButton(onPressed:(){}, title: "Submit"),
+            CustomElevatedButton(onPressed:(){
+              Navigator.push(context, MaterialPageRoute(builder: (context)=> RoomsView()));
+            }, title: "Check Rooms and Rates"),
           ],
         ),
       ),

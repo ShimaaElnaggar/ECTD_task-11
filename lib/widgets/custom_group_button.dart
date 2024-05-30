@@ -25,7 +25,7 @@ class _CustomGrouPButtonsState extends State<CustomGrouPButtons> {
   List<String> radioButtons =
   [
     'City View',
-    'Pool View',
+    'Sea View',
   ];
 
   @override
